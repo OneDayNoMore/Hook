@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "cn.sanlicun.pay"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 8
+        versionName "1.0.8"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+
+
+        ndk {
+            //根据需要 自行选择添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a','arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+
+                XG_ACCESS_ID:"2100299511",
+                XG_ACCESS_KEY : "AENE71281JYY",
+        ]
+
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+
+
+    }
+}
+
+repositories {
+    jcenter();
+}
+
+dependencies {
+    provided 'de.robv.android.xposed:api:82'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    //        exclude group: 'com.android.support', module: 'support-annotations'
+    //    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.jiechic.library:xUtils:2.6.14'
+    compile 'com.alibaba:fastjson:1.2.19'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'org.jsoup:jsoup:1.9.2'
+    compile files('libs/jetty-client-7.6.0.RC4.jar')
+    compile files('libs/jetty-continuation-7.6.0.RC4.jar')
+    compile files('libs/jetty-deploy-7.6.0.RC4.jar')
+    compile files('libs/jetty-http-7.6.0.RC4.jar')
+    compile files('libs/jetty-io-7.6.0.RC4.jar')
+    compile files('libs/jetty-security-7.6.0.RC4.jar')
+    compile files('libs/jetty-server-7.6.0.RC4.jar')
+    compile files('libs/jetty-servlet-7.6.0.RC4.jar')
+    compile files('libs/jetty-util-7.6.0.RC4.jar')
+    compile files('libs/jetty-webapp-7.6.0.RC4.jar')
+    compile files('libs/jetty-xml-7.6.0.RC4.jar')
+    compile files('libs/jstl-1.2.jar')
+    compile files('libs/servlet-api-2.5.jar')
+    compile files('libs/dom4j-1.6.1.jar')
+    compile files('libs/jdom.jar')
+}
